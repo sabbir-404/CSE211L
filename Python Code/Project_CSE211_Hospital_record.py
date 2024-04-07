@@ -154,6 +154,7 @@ patient_records = [
 #     print('1. Sort Data by ID \n2. Sort Data by Name \n3. Sort Data by Age \n4. Sort Data by')
 
 app = HospitalRecord(patient_records)
-app.radix_sort_Patient_age()
-app.radix_sort_string(1)
+# app.radix_sort_Patient_age()
+# app.radix_sort_string(1)
+app.radix_sort_string(4)
 app.print_record()
