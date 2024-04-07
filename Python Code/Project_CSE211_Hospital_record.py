@@ -1,48 +1,53 @@
-def count_sort_numbers(arr, exp, index):
-    arr_len = len(arr)
-    
-    output = [0] * arr_len
-    arr_count = [0] * 10
-    
-    for i in range(arr_len):
-        arr_index = arr[i][index] // exp
-        arr_count[arr_index % 10] += 1
-    
-    for i in range(1, 10):
-        arr_count[i] += arr_count[i - 1]
-    
-    i = arr_len - 1
-    while i >= 0:
-        arr_index = arr[i][index] // exp
-        output[arr_count[arr_index % 10] - 1] = arr[i]
-        arr_count[arr_index % 10] -= 1
-        i -= 1
-    
-    for i in range(arr_len):
-        arr[i] = output[i]
-    
-    return output
+class HospitalRecord:
+    def __init__(self, arr):
+        self.patient_records = arr
+        
+    def count_sort_numbers(self, arr, exp, index):
+        arr_len = len(arr)
+        
+        output = [0] * arr_len
+        arr_count = [0] * 10
+        
+        for i in range(arr_len):
+            arr_index = arr[i][index] // exp
+            arr_count[arr_index % 10] += 1
+        
+        for i in range(1, 10):
+            arr_count[i] += arr_count[i - 1]
+        
+        i = arr_len - 1
+        while i >= 0:
+            arr_index = arr[i][index] // exp
+            output[arr_count[arr_index % 10] - 1] = arr[i]
+            arr_count[arr_index % 10] -= 1
+            i -= 1
+        
+        for i in range(arr_len):
+            arr[i] = output[i]
+        
+        return output
 
-def radix_sort_Paitient_ID(arr):
-    maximum_ID = max([data[0] for data in arr])
-    exp = 1
-    while (maximum_ID // exp) > 0:
-        count_sort_numbers(arr, exp, 0)
-        exp *= 10
-
-
-def radix_sort_Paitient_age(arr):
-    maximum_ID =  max([data[2] for data in arr])
-    exp = 1
+    def radix_sort_Patient_ID(self, arr):
+        maximum_ID = max([data[0] for data in arr])
+        exp = 1
+        
+        while (maximum_ID // exp) > 0:
+            self.count_sort_numbers(arr, exp, 0)
+            exp *= 10
     
-    while (maximum_ID // exp) > 0:
-        count_sort_numbers(arr, exp, 2)
-        exp *= 10
+    def radix_sort_Patient_age(self, arr):
+        maximum_age = max([data[2] for data in arr])
+        exp = 1
+        
+        while (maximum_age // exp) > 0:
+            self.count_sort_numbers(arr, exp, 2)
+            exp *= 10
 
-def print_record(arr):
-    for record in patient_records:
-        print("Patient ID: {:<3} Name: {:<18} Age: {:<3} Disease: {:<15} DOB: {:<12} Admitted Date: {:<12} Diagnosis: {:<30} Allergy History: {}".format(
-            record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7]))
+    def print_record(self):
+        for record in self.patient_records:
+            print("Patient ID: {:<3} Name: {:<18} Age: {:<3} Disease: {:<15} DOB: {:<12} Admitted Date: {:<12} Diagnosis: {:<30} Allergy History: {}".format(
+                record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7]))
+
 
 
 # paitient ID, name, Age, disease, date of birth, admitted data, diagnosis, allergy history
@@ -99,3 +104,7 @@ patient_records = [
     [18, 'Elijah Garcia', 55, 'Hypertension', '1969-10-07', '2024-02-25', 'High blood pressure diagnosis', ['Pollen', 'Soy']]
 ]
 
+app = HospitalRecord(patient_records)
+
+app.radix_sort_Patient_age(patient_records)
+app.print_record()
