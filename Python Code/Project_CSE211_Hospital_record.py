@@ -99,8 +99,3 @@ patient_records = [
     [18, 'Elijah Garcia', 55, 'Hypertension', '1969-10-07', '2024-02-25', 'High blood pressure diagnosis', ['Pollen', 'Soy']]
 ]
 
-
-
-radix_sort_Paitient_ID(patient_records)
-
-print_record(patient_records)
