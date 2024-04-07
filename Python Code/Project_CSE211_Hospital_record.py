@@ -1,7 +1,7 @@
 class HospitalRecord:
     def __init__(self, arr):
         self.patient_records = arr
-        
+
     def count_sort_numbers(self, arr, exp, index):
         arr_len = len(arr)
         
@@ -27,21 +27,64 @@ class HospitalRecord:
         
         return output
 
-    def radix_sort_Patient_ID(self, arr):
-        maximum_ID = max([data[0] for data in arr])
+    def count_sort_strings(self, arr, char_index, index):
+        arr_len = len(arr)
+        output = [0] * arr_len
+        arr_count = [0] * 256
+        
+        for i in range(arr_len):
+            if char_index < len(arr[i][index]):
+                char_val = ord(arr[i][index][char_index])
+                arr_count[char_val] += 1
+            else:
+                arr_count[0] += 1
+        
+        for i in range(1, 256):
+            arr_count[i] += arr_count[i - 1]
+        
+        i = arr_len - 1
+        while i >= 0:
+            if char_index < len(arr[i][index]):
+                char_val = ord(arr[i][index][char_index])
+                output[arr_count[char_val] - 1] = arr[i]
+                arr_count[char_val] -= 1
+            else:
+                output[arr_count[0] - 1] = arr[i]
+                arr_count[0] -= 1
+            
+            i -= 1
+
+        for i in range(arr_len):
+            arr[i] = output[i]
+
+
+    def radix_sort_Patient_ID(self):
+        maximum_ID = max([data[0] for data in self.patient_records])
         exp = 1
         
         while (maximum_ID // exp) > 0:
-            self.count_sort_numbers(arr, exp, 0)
+            self.count_sort_numbers(self.patient_records, exp, 0)
             exp *= 10
-    
-    def radix_sort_Patient_age(self, arr):
-        maximum_age = max([data[2] for data in arr])
+
+    def radix_sort_Patient_age(self):
+        maximum_age = max([data[2] for data in self.patient_records])
         exp = 1
         
         while (maximum_age // exp) > 0:
-            self.count_sort_numbers(arr, exp, 2)
+            self.count_sort_numbers(self.patient_records, exp, 2)
             exp *= 10
+
+    def radix_sort_string(self, index):
+        max_len = max(len(record[index]) for record in self.patient_records)
+        
+        for i in range(len(self.patient_records)):
+            self.patient_records[i][index] = self.patient_records[i][index].ljust(max_len)
+
+        for char_index in range(max_len - 1, -1, -1):
+            self.count_sort_strings(self.patient_records, char_index, index)
+
+        for i in range(len(self.patient_records)):
+            self.patient_records[i][index] = self.patient_records[i][index].rstrip()
 
     def print_record(self):
         for record in self.patient_records:
@@ -106,5 +149,6 @@ patient_records = [
 
 app = HospitalRecord(patient_records)
 
-app.radix_sort_Patient_age(patient_records)
+# app.radix_sort_Patient_age()
+app.radix_sort_string(1)
 app.print_record()
