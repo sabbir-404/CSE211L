@@ -91,7 +91,7 @@ class HospitalRecord:
             print("Patient ID: {:<3} Name: {:<18} Age: {:<3} Blood group:{:<3} Disease: {:<15} DOB: {:<12} Admitted Date: {:<12} Diagnosis: {:<30} Allergy History: {}".format(
                 record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7], record[8]))
 
-# paitient ID, name, Age, disease, date of birth, admitted data, diagnosis, allergy history
+# paitient ID, name, Age,blood group, disease, date of birth, admitted data, diagnosis, allergy history
 patient_records = [
     [9, 'James Martinez', 32, 'AB', 'Anemia', '1992-09-08', '2024-03-09', 'Anemia diagnosis', ['Peanuts', 'Penicillin']],
     [20, 'Charlotte Robinson', 70, 'O', 'Asthma', '1954-08-21', '2024-02-22', 'Asthma diagnosis', ['Shellfish', 'Soy']],
