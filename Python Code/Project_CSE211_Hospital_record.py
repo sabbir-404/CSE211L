@@ -146,9 +146,14 @@ patient_records = [
 ]
 
 
-app = HospitalRecord(patient_records)
+# def application(record):
+#     app = HospitalRecord(record)
+#     def eq():
+#         print('=' * 15)
+#     print(eq, 'Hospital record', eq)
+#     print('1. Sort Data by ID \n2. Sort Data by Name \n3. Sort Data by Age \n4. Sort Data by')
 
-# app.radix_sort_Patient_age()
+app = HospitalRecord(patient_records)
+app.radix_sort_Patient_age()
 app.radix_sort_string(1)
-app.radix_sort_string(4)
 app.print_record()
