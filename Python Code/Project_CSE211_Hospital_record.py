@@ -181,3 +181,5 @@ def hosipital_record_application (rec):
             break
         else:
             print('Wrong Input please select from the above options only.')
+            
+hosipital_record_application(patient_records)
