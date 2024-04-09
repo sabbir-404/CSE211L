@@ -89,8 +89,8 @@ class HospitalRecord:
 
     def print_record(self):
         for record in self.patient_records:
-            print("Patient ID: {:<3} Name: {:<18} Age: {:<3} Blood group: {:<3} Disease: {:<15} DOB: {:<12} Admitted Date: {:<12} Diagnosis: {:<30} Allergy 1: {}, {}".format(
-                record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7], record[8][0], record[8][1]))
+            print("Patient ID: {:<3} Name: {:<18} Age: {:<3} Blood group: {:<3} Disease: {:<15} DOB: {:<12} Admitted Date: {:<12} Diagnosis: {:<30} Allergy 1: {}".format(
+                record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7], record[8]))
 
 def hospital_record_application(rec):
     app = HospitalRecord(rec)
