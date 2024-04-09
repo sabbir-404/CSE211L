@@ -97,12 +97,13 @@ class HospitalRecord:
 
 def hospital_record_application(rec):
     def eq():
-        print('=' * 15)
+        print('=' * 47)
 
     app = HospitalRecord(rec)
 
     while True:
-        print('=' * 15, 'HOSPITAL RECORD', '=' * 15)
+        eq()
+        print('-' * 15, 'HOSPITAL RECORD', '-' * 15)
         eq()
         print('Please choose from the options below:-')
         print('1. Sort data by Patient ID \n2. Sort Data by Patient Name\n3. Sort Data by Patient Age\n4. Sort Data by Patient Blood Group\n5. Sort Data by Patient Disease\n6. Sort Data by Patient Date of Birth\n7. Sort data by Hospital admitted date\n8. Sort data by allergy 1\n9. Sort data by allergy 2\n10. View Patient Record(press v)\n11. Quit')
@@ -127,9 +128,9 @@ def hospital_record_application(rec):
         elif user_input == '9':
             app.radix_sort_string(8)
         elif user_input == '10' or user_input == 'v' or user_input == 'V':
-            eq()
+            print('*' * 220)
             app.print_record()
-            eq()
+            print('*' * 220)
         elif user_input == '11':
             eq()
             print("Program ended")
