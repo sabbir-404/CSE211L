@@ -89,27 +89,27 @@ class HospitalRecord:
 
     def print_record(self):
         for record in self.patient_records:
-            print("Patient ID: {:<3} Name: {:<18} Age: {:<3} Blood group: {:<3} Disease: {:<15} DOB: {:<12} Admitted Date: {:<12} Diagnosis: {:<30} Allergy 1: {}, {}".format(
+            print("\033[1;37mPatient ID: {:<3} Name: {:<18} Age: {:<3} Blood group: {:<3} Disease: {:<15} DOB: {:<12} Admitted Date: {:<12} Diagnosis: {:<30} Allergy 1: {}, {}".format(
                 record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7], record[8][0], record[8][1]))
 
 def hospital_record_application(rec):
     app = HospitalRecord(rec)
     def eq():
-        print('=' * 47)
+        print('\033[1;32m' + '=' * 47)
 
     def print_records():
-        print('*' * 220)
+        print('\033[1;32m' + '*' * 220)
         app.print_record()
-        print('*' * 220)
+        print('\033[1;32m' + '*' * 220)
 
     while True:
         eq()
-        print('-' * 15, 'HOSPITAL RECORD', '-' * 15)
+        print('\033[1;31m' + '-' * 15, 'HOSPITAL RECORD', '-' * 15)
         eq()
-        print('Please choose from the options below:-')
-        print('1. Sort data by Patient ID \n2. Sort Data by Patient Name\n3. Sort Data by Patient Age\n4. Sort Data by Patient Blood Group\n5. Sort Data by Patient Disease\n6. Sort Data by Patient Date of Birth\n7. Sort data by Hospital admitted date\n8. Sort data by allergy 1\n9. Sort data by allergy 2\n10. View Patient Record(press v)\n11. Quit')
+        print('\033[1;37m' + 'Please choose from the options below:-')
+        print('\033[1;37m' + '1. Sort data by Patient ID \n2. Sort Data by Patient Name\n3. Sort Data by Patient Age\n4. Sort Data by Patient Blood Group\n5. Sort Data by Patient Disease\n6. Sort Data by Patient Date of Birth\n7. Sort data by Hospital admitted date\n8. Sort data by allergy 1\n9. Sort data by allergy 2\n10. View Patient Record(press v)\n11. Quit')
         eq()
-        user_input = input('Please Enter your option: ')
+        user_input = input('\033[1;37m' + 'Please Enter your option: ')
         if user_input == '1':
             app.radix_sort_Patient_ID()
             print_records()
@@ -139,13 +139,13 @@ def hospital_record_application(rec):
             print_records()
         elif user_input == '11' or user_input == 'quit' or user_input == 'q':
             eq()
-            print("Program ended")
+            print('\033[1;31m' + "Program ended")
             eq()
             break
         else:
-            print('Wrong Input please select from the above options only.')
+            print('\033[1;31m' + 'Wrong Input please select from the above options only.')
 
-# paitient ID, name, Age,blood group, disease, date of birth, admitted data, diagnosis, allergy history
+# Patient ID, name, Age, blood group, disease, date of birth, admitted data, diagnosis, allergy history
 patient_records = [
     [9, 'James Martinez', 32, 'AB', 'Anemia', '1992-09-08', '2024-03-09', 'Anemia diagnosis', ['Peanuts', 'Penicillin']],
     [20, 'Charlotte Robinson', 70, 'O', 'Asthma', '1954-08-21', '2024-02-22', 'Asthma diagnosis', ['Shellfish', 'Soy']],
