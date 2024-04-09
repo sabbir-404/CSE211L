@@ -24,8 +24,6 @@ class HospitalRecord:
         
         for i in range(arr_len):
             arr[i] = output[i]
-        
-        return output
 
     def count_sort_strings(self, arr, char_index, index):
         arr_len = len(arr)
@@ -57,7 +55,6 @@ class HospitalRecord:
         for i in range(arr_len):
             arr[i] = output[i]
 
-
     def radix_sort_Patient_ID(self):
         maximum_ID = max([data[0] for data in self.patient_records])
         exp = 1
@@ -75,21 +72,71 @@ class HospitalRecord:
             exp *= 10
 
     def radix_sort_string(self, index):
-        max_len = max(len(record[index]) for record in self.patient_records)
+        max_len = max(len(str(record[index])) for record in self.patient_records)
         
         for i in range(len(self.patient_records)):
-            self.patient_records[i][index] = self.patient_records[i][index].ljust(max_len)
+            if isinstance(self.patient_records[i][index], list):
+                # Join the list elements into a single string
+                self.patient_records[i][index] = ', '.join(self.patient_records[i][index])
+            
+            # Convert to string and left-justify to match max length
+            self.patient_records[i][index] = str(self.patient_records[i][index]).ljust(max_len)
 
         for char_index in range(max_len - 1, -1, -1):
             self.count_sort_strings(self.patient_records, char_index, index)
 
         for i in range(len(self.patient_records)):
-            self.patient_records[i][index] = self.patient_records[i][index].rstrip()
+            # Strip the left-justified padding
+            self.patient_records[i][index] = str(self.patient_records[i][index]).rstrip()
+
 
     def print_record(self):
         for record in self.patient_records:
-            print("Patient ID: {:<3} Name: {:<18} Age: {:<3} Blood group:{:<3} Disease: {:<15} DOB: {:<12} Admitted Date: {:<12} Diagnosis: {:<30} Allergy History: {}".format(
-                record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7], record[8]))
+            print("Patient ID: {:<3} Name: {:<18} Age: {:<3} Blood group: {:<3} Disease: {:<15} DOB: {:<12} Admitted Date: {:<12} Diagnosis: {:<30} Allergy 1: {}, {}".format(
+                record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7], record[8][0], record[8][1]))
+
+def hospital_record_application(rec):
+    def eq():
+        print('=' * 15)
+
+    app = HospitalRecord(rec)
+
+    while True:
+        print('=' * 15, 'HOSPITAL RECORD', '=' * 15)
+        eq()
+        print('Please choose from the options below:-')
+        print('1. Sort data by Patient ID \n2. Sort Data by Patient Name\n3. Sort Data by Patient Age\n4. Sort Data by Patient Blood Group\n5. Sort Data by Patient Disease\n6. Sort Data by Patient Date of Birth\n7. Sort data by Hospital admitted date\n8. Sort data by allergy 1\n9. Sort data by allergy 2\n10. View Patient Record(press v)\n11. Quit')
+        eq()
+        user_input = input('Please Enter your option: ')
+        if user_input == '1':
+            app.radix_sort_Patient_ID()
+        elif user_input == '2':
+            app.radix_sort_string(1)
+        elif user_input == '3':
+            app.radix_sort_Patient_age()
+        elif user_input == '4':
+            app.radix_sort_string(3)
+        elif user_input == '5':
+            app.radix_sort_string(4)
+        elif user_input == '6':
+            app.radix_sort_string(5)
+        elif user_input == '7':
+            app.radix_sort_string(6)
+        elif user_input == '8':
+            app.radix_sort_string(7)
+        elif user_input == '9':
+            app.radix_sort_string(8)
+        elif user_input == '10' or user_input == 'v' or user_input == 'V':
+            eq()
+            app.print_record()
+            eq()
+        elif user_input == '11':
+            eq()
+            print("Program ended")
+            eq()
+            break
+        else:
+            print('Wrong Input please select from the above options only.')
 
 # paitient ID, name, Age,blood group, disease, date of birth, admitted data, diagnosis, allergy history
 patient_records = [
@@ -103,7 +150,7 @@ patient_records = [
     [17, 'Ava Thompson', 43, 'AB', 'Pneumonia', '1981-04-03', '2024-02-26', 'Pneumonia diagnosis', ['Dust', 'Milk']],
     [12, 'Liam Jackson', 36, 'A', 'Bronchitis', '1988-09-20', '2024-03-05', 'Bronchitis diagnosis', ['Peanuts', 'Penicillin']],
     [1, 'John Doe', 35, 'O', 'Hypertension', '1989-05-15', '2024-03-20', 'High blood pressure diagnosis', ['Penicillin', 'Dust']],
-    [4, 'Jane Williams', 28, 'A', 'Migraine', '1996-12-10', '2024-03-15', 'Migraine diagnosis', ['Shellfish', 'Milk']],
+    [4, 'Jane Williams', 28, 'A', 'Migraine', '1996-12-10', '2024-03-15', 'Migraine diagnosis', ['Shellfish', 'Milk']], 
     [46, 'Lucas Bell', 57, 'O', 'Asthma', '1967-01-02', '2024-01-11', 'Asthma diagnosis', ['Shellfish', 'Milk']],
     [30, 'Aria King', 40, 'A', 'Migraine', '1984-04-18', '2024-02-07', 'Migraine diagnosis', ['Peanuts', 'Soy']],
     [15, 'Emma Johnson', 62, 'O', 'Arthritis', '1962-07-15', '2024-03-01', 'Arthritis diagnosis', ['Penicillin', 'Wheat']],
@@ -145,41 +192,4 @@ patient_records = [
     [18, 'Elijah Garcia', 55, 'B', 'Hypertension', '1969-10-07', '2024-02-25', 'High blood pressure diagnosis', ['Pollen', 'Soy']]
 ]
 
-def hosipital_record_application (rec):
-    def eq ():
-        print('=' * 15)
-    
-    app = HospitalRecord(rec)
-    print('=' * 15, 'HOSPITAL RECORD', '=' * 15)
-
-    while True:
-        print('Please chose from the options below:-')
-        print('1. Sort data by Patient ID \n2. Sort Data by Paitient Name\n3. Sort Data by Patient Age\n4. Sort Data by Patient Blood Group\n5. Sort Data by Patient Disease\n6. Sort Data by Patient Date of Birth\n7. Sort data by Hospital admitted date\n8. Sort data by allergy 1\n9. Sort data by allergy 2\n10. View Patient Record\n11. Quit')
-
-        user_input = int(input('Please Enter your option: '))
-        if user_input == 1:
-            app.radix_sort_Patient_ID()
-        elif user_input == 2:
-            app.radix_sort_string(1)
-        elif user_input == 3:
-            app.radix_sort_Patient_age()
-        elif user_input == 4:
-            app.radix_sort_string(3)
-        elif user_input == 5:
-            app.radix_sort_string(4)
-        elif user_input == 6:
-            app.radix_sort_string(5)
-        elif user_input == 7:
-            app.radix_sort_string(6)
-        elif user_input == 8:
-            app.radix_sort_string(7[1])
-        elif user_input == 9:
-            app.radix_sort_string(7[2])
-        elif patient_records == 10:
-            app.print_record()
-        elif user_input == 11:
-            break
-        else:
-            print('Wrong Input please select from the above options only.')
-            
-hosipital_record_application(patient_records)
+hospital_record_application(patient_records)
