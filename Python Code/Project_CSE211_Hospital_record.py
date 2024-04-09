@@ -145,16 +145,39 @@ patient_records = [
     [18, 'Elijah Garcia', 55, 'B', 'Hypertension', '1969-10-07', '2024-02-25', 'High blood pressure diagnosis', ['Pollen', 'Soy']]
 ]
 
+def hosipital_record_application (rec):
+    def eq ():
+        print('=' * 15)
+    
+    app = HospitalRecord(rec)
+    print('=' * 15, 'HOSPITAL RECORD', '=' * 15)
 
-# def application(record):
-#     app = HospitalRecord(record)
-#     def eq():
-#         print('=' * 15)
-#     print(eq, 'Hospital record', eq)
-#     print('1. Sort Data by ID \n2. Sort Data by Name \n3. Sort Data by Age \n4. Sort Data by')
+    while True:
+        print('Please chose from the options below:-')
+        print('1. Sort data by Patient ID \n2. Sort Data by Paitient Name\n3. Sort Data by Patient Age\n4. Sort Data by Patient Blood Group\n5. Sort Data by Patient Disease\n6. Sort Data by Patient Date of Birth\n7. Sort data by Hospital admitted date\n8. Sort data by allergy 1\n9. Sort data by allergy 2\n10. View Patient Record\n11. Quit')
 
-app = HospitalRecord(patient_records)
-# app.radix_sort_Patient_age()
-# app.radix_sort_string(1)
-app.radix_sort_string(4)
-app.print_record()
+        user_input = int(input('Please Enter your option: '))
+        if user_input == 1:
+            app.radix_sort_Patient_ID()
+        elif user_input == 2:
+            app.radix_sort_string(1)
+        elif user_input == 3:
+            app.radix_sort_Patient_age()
+        elif user_input == 4:
+            app.radix_sort_string(3)
+        elif user_input == 5:
+            app.radix_sort_string(4)
+        elif user_input == 6:
+            app.radix_sort_string(5)
+        elif user_input == 7:
+            app.radix_sort_string(6)
+        elif user_input == 8:
+            app.radix_sort_string(7[1])
+        elif user_input == 9:
+            app.radix_sort_string(7[2])
+        elif patient_records == 10:
+            app.print_record()
+        elif user_input == 11:
+            break
+        else:
+            print('Wrong Input please select from the above options only.')
