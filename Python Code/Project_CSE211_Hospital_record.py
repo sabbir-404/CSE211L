@@ -76,17 +76,14 @@ class HospitalRecord:
         
         for i in range(len(self.patient_records)):
             if isinstance(self.patient_records[i][index], list):
-                # Join the list elements into a single string
                 self.patient_records[i][index] = ', '.join(self.patient_records[i][index])
             
-            # Convert to string and left-justify to match max length
             self.patient_records[i][index] = str(self.patient_records[i][index]).ljust(max_len)
 
         for char_index in range(max_len - 1, -1, -1):
             self.count_sort_strings(self.patient_records, char_index, index)
 
         for i in range(len(self.patient_records)):
-            # Strip the left-justified padding
             self.patient_records[i][index] = str(self.patient_records[i][index]).rstrip()
 
 
@@ -96,10 +93,14 @@ class HospitalRecord:
                 record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7], record[8][0], record[8][1]))
 
 def hospital_record_application(rec):
+    app = HospitalRecord(rec)
     def eq():
         print('=' * 47)
 
-    app = HospitalRecord(rec)
+    def print_records():
+        print('*' * 220)
+        app.print_record()
+        print('*' * 220)
 
     while True:
         eq()
@@ -111,27 +112,32 @@ def hospital_record_application(rec):
         user_input = input('Please Enter your option: ')
         if user_input == '1':
             app.radix_sort_Patient_ID()
+            print_records()
         elif user_input == '2':
             app.radix_sort_string(1)
+            print_records()
         elif user_input == '3':
             app.radix_sort_Patient_age()
+            print_records()
         elif user_input == '4':
             app.radix_sort_string(3)
+            print_records()
         elif user_input == '5':
             app.radix_sort_string(4)
+            print_records()
         elif user_input == '6':
             app.radix_sort_string(5)
+            print_records()
         elif user_input == '7':
             app.radix_sort_string(6)
+            print_records()
         elif user_input == '8':
             app.radix_sort_string(7)
+            print_records()
         elif user_input == '9':
             app.radix_sort_string(8)
-        elif user_input == '10' or user_input == 'v' or user_input == 'V':
-            print('*' * 220)
-            app.print_record()
-            print('*' * 220)
-        elif user_input == '11':
+            print_records()
+        elif user_input == '11' or user_input == 'quit' or user_input == 'q':
             eq()
             print("Program ended")
             eq()
@@ -166,31 +172,7 @@ patient_records = [
     [24, 'James Lee', 57, 'A', 'Arthritis', '1967-03-17', '2024-02-17', 'Arthritis diagnosis', ['Peanuts', 'Wheat']],
     [13, 'Isabella White', 50, 'B', 'Hypertension', '1974-11-12', '2024-03-03', 'High blood pressure diagnosis', ['Shellfish', 'Dust']],
     [44, 'Leo Reed', 28, 'O', 'Anemia', '1995-06-26', '2024-01-15', 'Anemia diagnosis', ['Peanuts', 'Dust']],
-    [34, 'Camila Scott', 30, 'O', 'Anemia', '1993-09-08', '2024-01-31', 'Anemia diagnosis', ['Pollen', 'Penicillin']],
-    [11, 'Sophia Moore', 24, 'B', 'Flu', '2000-03-08', '2024-03-07', 'Flu diagnosis', ['Pollen', 'Shellfish']],
-    [48, 'Penelope Simmons', 51, 'A', 'Pneumonia', '1973-11-24', '2024-01-08', 'Pneumonia diagnosis', ['Peanuts', 'Milk']],
-    [36, 'Hannah Adams', 64, 'B', 'Asthma', '1960-10-13', '2024-01-28', 'Asthma diagnosis', ['Penicillin', 'Soy']],
-    [8, 'Olivia Taylor', 68, 'AB', 'Arthritis', '1956-02-17', '2024-03-10', 'Arthritis diagnosis', ['Dust', 'Milk']],
-    [29, 'Scarlett Hernandez', 56, 'A', 'Pneumonia', '1968-08-04', '2024-02-09', 'Pneumonia diagnosis', ['Penicillin', 'Milk']],
-    [27, 'Sofia Allen', 61, 'B', 'Asthma', '1963-05-22', '2024-02-12', 'Asthma diagnosis', ['Shellfish', 'Milk']],
-    [7, 'David Wilson', 41, 'O', 'Pneumonia', '1983-06-30', '2024-03-12', 'Pneumonia diagnosis', ['Shellfish', 'Wheat']],
-    [2, 'Alice Smith', 45, 'A', 'Diabetes', '1979-10-22', '2024-03-18', 'Diabetes diagnosis', ['Shellfish', 'Pollen']],
-    [3, 'Bob Johnson', 60, 'B', 'Asthma', '1964-08-03', '2024-03-17', 'Asthma diagnosis', ['Peanuts', 'Cats']],
-    [31, 'Grayson Wright', 63, 'A', 'Arthritis', '1961-06-25', '2024-02-05', 'Arthritis diagnosis', ['Pollen', 'Wheat']],
-    [50, 'Layla Flores', 60, 'B', 'Arthritis', '1964-12-28', '2024-01-05', 'Arthritis diagnosis', ['Shellfish', 'Dust']],
-    [16, 'Oliver Martin', 29, 'A', 'Migraine', '1995-02-19', '2024-02-28', 'Migraine diagnosis', ['Peanuts', 'Shellfish']],
-    [32, 'Luna Lopez', 34, 'B', 'Flu', '1990-02-14', '2024-02-04', 'Flu diagnosis', ['Shellfish', 'Milk']],
-    [28, 'Jackson Young', 35, 'O', 'Bronchitis', '1989-11-11', '2024-02-10', 'Bronchitis diagnosis', ['Pollen', 'Soy']],
-    [5, 'Michael Brown', 52, 'A', 'Bronchitis', '1972-04-25', '2024-03-14', 'Bronchitis diagnosis', ['Pollen', 'Eggs']],
-    [37, 'Henry Baker', 37, 'A', 'Bronchitis', '1987-08-06', '2024-01-27', 'Bronchitis diagnosis', ['Peanuts', 'Milk']],
-    [19, 'Mia Martinez', 31, 'AB', 'Anemia', '1993-12-29', '2024-02-24', 'Anemia diagnosis', ['Penicillin', 'Wheat']],
-    [43, 'Audrey Cooper', 49, 'B', 'Diabetes', '1975-09-03', '2024-01-16', 'Diabetes diagnosis', ['Pollen', 'Milk']],
-    [49, 'Xavier Foster', 41, 'A', 'Migraine', '1983-05-16', '2024-01-06', 'Migraine diagnosis', ['Pollen', 'Soy']],
-    [26, 'Avery Hall', 48, 'B', 'Hypertension', '1976-12-03', '2024-02-14', 'High blood pressure diagnosis', ['Peanuts', 'Dust']],
-    [41, 'Grace Murphy', 65, 'A', 'Arthritis', '1959-05-07', '2024-01-20', 'Arthritis diagnosis', ['Peanuts', 'Wheat']],
-    [45, 'Savannah Bailey', 47, 'O', 'Hypertension', '1977-03-09', '2024-01-13', 'High blood pressure diagnosis', ['Peanuts', 'Soy']],
-    [39, 'Zoe Turner', 26, 'A', 'Eczema', '1998-03-11', '2024-01-23', 'Eczema diagnosis', ['Peanuts', 'Milk']],
-    [18, 'Elijah Garcia', 55, 'B', 'Hypertension', '1969-10-07', '2024-02-25', 'High blood pressure diagnosis', ['Pollen', 'Soy']]
+    [34, 'Camila Scott', 30, 'O', 'Anemia', '1993-09-08', '2024-01-31', 'Anemia diagnosis', ['Pollen', 'Penicillin']]
 ]
 
 hospital_record_application(patient_records)
