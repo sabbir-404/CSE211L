@@ -1,0 +1,181 @@
+\documentclass[final]{beamer}
+%% Possible paper sizes: a0, a0b, a1, a2, a3, a4.
+%% Possible orientations: portrait, landscape
+%% Font sizes can be changed using the scale option.
+\usepackage[size=a1,orientation=portrait,scale=1.1]{beamerposter}
+
+\usetheme{gemini}
+\usecolortheme{seagull}
+\useinnertheme{rectangles}
+
+% ====================
+% Packages
+% ====================
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{svg}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{multicol}
+\usepackage{placeins}
+\usepackage[noend]{algpseudocode}
+\usepackage{amsmath}
+ 
+
+% ====================
+% Lengths
+% ====================
+
+% If you have N columns, choose \sepwidth and \colwidth such that
+% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.03\paperwidth}
+\setlength{\colwidth}{0.45\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Logo (optional)
+% ====================
+
+% LaTeX logo taken from https://commons.wikimedia.org/wiki/File:LaTeX_logo.svg
+% use this to include logos on the left and/or right side of the header:
+\logoleft{\includegraphics[height=6.6cm]{logo/iub_cse.png}}
+\logoright{\includegraphics[height=6.6cm]{logo/iub_logo.png}}
+
+% ====================
+% Footer (optional)
+% ====================
+
+\footercontent{
+	\insertdate \hfill
+	Algorithm Project \hfill
+	CSE211: Algorithms Lab
+    % \href{mailto:myemail@exampl.com}{\texttt{myemail@example.com}}
+}
+% (can be left out to remove footer)
+
+% ====================
+% My own customization
+% - BibLaTeX
+% - Boxes with tcolorbox
+% - User-defined commands
+% ====================
+\input{custom-defs.tex}
+
+%Configs
+
+\def\inst#1{\unskip$^{#1}$}
+\def\orcidID#1{\unskip$^{[#1]}$} % added MR 2018-03-10
+\def\fnmsep{\unskip$^,$}
+\def\email#1{{\tt#1}}
+
+
+
+%% Reference Sources
+\addbibresource{refs.bib}
+\renewcommand{\pgfuseimage}[1]{\includegraphics[scale=2.0]{#1}}
+
+\pgfplotsset{compat=1.18}
+
+
+
+\title{RADIX SORT UNRAVELED}
+
+\author
+{
+    Sabbir Islam \inst{1} \and
+    Anika Tabassum \inst{2} \and
+    Sadnan Yasar Tanvir\inst{3} \and 
+    Samia Reza Maisha \inst{4} 
+    Saiful Islam \inst{5}     
+}
+
+% \institute[shortinst]{\inst{1} Independent University Bangladesh \samelineand \inst{2} Another Institute}
+
+
+\institute{Department of Computer Science and Engineering\\Independent University, Bangladesh\\Dhaka, Bangladesh.\\
+\email{\{$^{1}$2211176},{$^{2}$2321188},{$^{3}$2321524},{$^{4}$2211510},{$^{5}$2321267\}@iub.edu.bd}
+%\url{http://www.springer.com/gp/computer-science/lncs} 
+ }
+\date{April, 2024}
+
+\begin{document}
+	
+\begin{frame}[t]
+	
+	\begin{columns}[t]
+	
+	\begin{column}{2\colwidth+\sepwidth}	\begin{exampleblock}{Abstract}
+	\justifying{
+
+    Write the executive summary of the project.
+         
+    }
+	\end{exampleblock}
+	\end{column}
+
+	\end{columns}
+
+	\begin{columns}[t]
+		\separatorcolumn
+		
+		\begin{column}{\colwidth}
+			
+			\begin{block}{Introduction}
+			\justifying
+            Radix sort, first conceptualized by Herman Hollerith in 1887, became a practical sorting method for punched cards by 1923. It operates by processing individual digits or characters of numbers or strings from least to most significant, sorting elements based on their radix (the base of the numbering system used). Radix sort handles elements of varying lengths independently and can be more efficient than comparison-based algorithms in certain scenarios, despite its linear time complexity $(O(nw))$ and space complexity $(O(n + k))$. It can also maintain stability, preserving the relative order of elements with equal keys, which is important for specific applications.
+				
+			\end{block}
+			\begin{block}{Rationale for the Algorithm's Selection}
+			\justifying
+            Discuss Why was the Algorithm selected for solving that Problem?
+            
+			\end{block}
+			
+			\begin{alertblock}{Methodology}
+			
+			How is the Algorithm being used in that Problem? Include a flowchart depicting the whole working process. [You can use draw.io for this task]
+
+				
+				
+			\end{alertblock}
+			
+			
+		\end{column}
+	
+		\separatorcolumn
+		
+		\begin{column}{\colwidth}
+			
+			\begin{alertblock}{Substitute Use of the Algorithm}{}
+            
+            Can the algorithm used in solving the problem be used in any other application? Why? How?
+
+            
+			\end{alertblock}
+   
+   		\begin{alertblock}{Alternative Solution}
+			\justifying
+             Can the algorithm be replaced with any other similar algorithm to achieve better overall performance? Can you suggest any improvement to the existing system?
+
+
+             
+			\end{alertblock}
+   
+			\begin{alertblock}{Conclusion}
+			\justifying
+             Write your conclusion part here...
+
+             
+			\end{alertblock}
+		\end{column}
+		
+		\separatorcolumn
+	\end{columns}
+    \end{frame}
+\end{document}
